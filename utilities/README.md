@@ -6,6 +6,8 @@ The two main utilities you should worry about are:
 
 `add_release_to_database.py` and `site_generator.py`
 
+Note, those tools were designed in Python 3.5, do not expect them to work with any lower version.
+
 ___
 
 ### `add_release_to_database.py` Usage Help
