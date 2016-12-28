@@ -37,11 +37,11 @@ Where
 
 ___
 
-### `sute_generator.py` Usage Help
+### `site_generator.py` Usage Help
 
 To generate the HTML pages call it like:
 
-`sute_generator.py`
+`site_generator.py`
 
 Basically all you have to do is run it, it will create index.html and archive pages(tbd) automatically in the CURRENT WORKING DIR.
 This way you can review the index.html before you overwrite them.
