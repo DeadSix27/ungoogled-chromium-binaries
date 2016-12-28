@@ -25,19 +25,54 @@
 body
 {
 	font-family: 'Open Sans';
+	font-size:11pt;
+	color:#DDDDDD;
+	background-color:#001f3f;
+}
+a,a:visited { color:#7FDBFF; text-decoration:none; }
+a:hover { color:#0074D9; }
+.archiveTable {
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+.archiveTable tr {
+	/* border:1px solid #000; */
+}
+.archiveTable .versionSeperator
+{
+	border-bottom:1px solid rgba(255,255,255,0.2);
+	margin-bottom:10px;
+}
+.archiveTable .versionHeader
+{
+	font-size:20pt;
+}
+.archiveTable .platformHeader
+{
+	font-size:15pt;
 }
 .mainContainer {
 	text-align: center;
 }
-
+.archHeader
+{
+	text-align:center;
+	margin-bottom:5px;
+}
 .gridHeader {
 	text-align: center;
-	height: 100px;
-	margin: 0 0 0 0;
+	margin: 0 0 10px 0;
 }
 .gridHeader .big {
 	font-size:30pt;
 	display:block;
+	font-weight:bold;
+	color:#c7f4ff;
+}
+.gridHeader .big a:hover
+{
+	text-decoration:none;
+	color:#0074D9;
 }
 .gridHeader .small {
 	font-size:14pt;
@@ -47,13 +82,17 @@ body
 	text-align: center;
 	margin: 0 0 20px 0;
 }
-
+.gridSubHeader span
+{
+	font-size:20pt;
+	margin: 0 0 20px 0;
+	display:block;
+}
 .gridContainer {
 	display: inline-block;
 	/* min-width: 700px; */
 	margin: 0 auto;
-	<!-- background: blue;
-	--> min-width: auto;
+	min-width: auto;
 }
 .gridContainer .platformVersionHeader {
 	font-weight: bold;
@@ -64,8 +103,14 @@ body
 	color: gray;
 }
 
-.gridContainer .platformVersionContainer {}
-
+.gridContainer .platformVersionContainer {
+	margin-bottom:10px;
+}
+.gridFooter {
+	font-size:9pt;
+	text-align:center;
+	padding-bottom:5px;
+}
 .releaseContainer {
 }
 
@@ -75,6 +120,8 @@ body
 
 .releaseContainer .authorGroup {
 	text-align: left;
+	padding-left:5px;
+	border-left:1px solid rgba(255,255,255,0.3);
 }
 
 .releaseContainer .authorGroup .head {
@@ -99,7 +146,7 @@ body
 .releaseContainer .authorGroup .release .title {
 	text-align: right;
 	min-width: 150px;
-	/* width: 20%; */
+	margin-right:10px;
 	color:#bbbbbb;
 }
 

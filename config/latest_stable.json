@@ -1,0 +1,25 @@
+{
+	"latest_stable": {
+		"windows":
+		{
+			"windows" : "55.0.2883.95-1"
+		},
+		"macos":
+		{
+			"macos" : "55.0.2883.95-1"
+		},
+		"ubuntu":
+		{
+			"ubuntu1610" : "55.0.2883.95-1",
+			"ubuntu1604" : "55.0.2883.87-1"
+		},
+		"debian":
+		{ 
+			"debian90" : "55.0.2883.87-1"
+		},
+		"linux_static":
+		{
+			"linux_static" : "55.0.2883.87-1"
+		}
+	}
+}

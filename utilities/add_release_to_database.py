@@ -21,7 +21,7 @@
 
 # Imports
 import json,sys,hashlib,zlib,pprint,os.path
-
+from shutil import copyfile
 # Settings
 
 _DATABASE_FILE = "../config/release_list.json"
@@ -30,7 +30,7 @@ _HASH_ALGS = ["md5", "sha1", "sha256", "crc32"]
 # Main functions
 
 def print_usage_info():
-	print("Usage: add_release_to_database.py {version} {author} {platform} {platformVersion} {arch} {filename {...}} ", file=sys.stderr)
+	print("Usage: add_release_to_database.py {version} {author} {platform} {platformVersion} {amd64|i386} {filename {...}} ", file=sys.stderr)
 	print("Example: add_release_to_database.py 55.0.2883.95-1 FooBar windows windows amd64 test.zip test2.zip", file=sys.stderr)
 
 def create_download_link(a,v,f): # author, version, filename
@@ -46,6 +46,8 @@ def main(args):
 		print_usage_info()
 		return 0
 	db = None
+	print("Saving backup to {0}".format(_DATABASE_FILE+".back"))
+	copyfile(_DATABASE_FILE, _DATABASE_FILE+".back")
 	with open(_DATABASE_FILE) as jsonFile:
 		db = json.load(jsonFile)
 		
@@ -101,11 +103,6 @@ def main(args):
 	print("Saved to {f}".format(f=_DATABASE_FILE))
 	with open(_DATABASE_FILE, 'w') as outfile:
 		json.dump(db, outfile)
-		
-
-def add_release(version,author,filePath):
-	pass
-#
 
 if __name__ == "__main__":
 	exit(main(sys.argv[1:]))
