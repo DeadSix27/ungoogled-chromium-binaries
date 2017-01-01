@@ -57,6 +57,15 @@ def main(args):
 		platform_version = args[3] # e.g ubuntu1604 (for windows, just use "windows") for a list see create_platform_version in site_generator.py
 		arch = args[4] # e.g amd64 or i386
 		filenames = args[5:] # list of files single or multiple depending on platform.
+		
+		# layout
+		#	"releases": { 
+		#		"(version)": { 55.0.2883.95-1
+		#			"(platform)": { ubuntu
+		#				"9Morello": { Eloston
+		#					"ubuntu1610": { ubuntu1604
+		#						"amd64": { amd64
+		#							"files": { files }
 
 		if version not in db["releases"]:
 			db["releases"][version] = {}

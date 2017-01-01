@@ -133,10 +133,10 @@ def create_title_by_filename(f):
 def read_database():
 	db = None
 	ls = None
-	with open(_LATEST_STABLE_FILE,"r") as fileobj:
-		ls = json.load(fileobj, object_pairs_hook=OrderedDict)
-	with open(_DATABASE_FILE,"r") as fileobj:
-		db = json.load(fileobj, object_pairs_hook=OrderedDict)
+	with open(_LATEST_STABLE_FILE,"r") as lSfileobj:
+		ls = json.load(lSfileobj, object_pairs_hook=OrderedDict)
+	with open(_DATABASE_FILE,"r") as dBfileobj:
+		db = json.load(dBfileobj, object_pairs_hook=OrderedDict)
 		
 		verDict = db["releases"]
 		
@@ -171,18 +171,19 @@ def generate_main_index(db,ls): # Reads the database and builds an html landing/
 			v = ls["latest_stable"][plat][platVer]
 			releaseConTemp = ""
 			for au in db["releases"][v][plat]:
-				archConTemp = ""
-				for btnss in db["releases"][v][plat][au][platVer]:
-					relCount+=1
-					relListTemp = ""
-					for rel in db["releases"][v][plat][au][platVer][btnss]["files"]:
-						fi = db["releases"][v][plat][au][platVer][btnss]["files"][rel]
-						if os.path.splitext(fi["url"])[1][1:] not in _IGNORE_EXTENSION_LIST:
-																				#create_title_by_filename(rel)
-							relListTemp += releaseTemplate.format(release_title=v,href_link=fi["url"],release_file_name=rel)
-					archConTemp += archContainerTemplate.format(bitness=_ARCH_FRIENDLY_NAME[btnss],release_list=relListTemp)
+				if platVer in db["releases"][v][plat][au]:
+					archConTemp = ""
+					for btnss in db["releases"][v][plat][au][platVer]:
+						relCount+=1
+						relListTemp = ""
+						for rel in db["releases"][v][plat][au][platVer][btnss]["files"]:
+							fi = db["releases"][v][plat][au][platVer][btnss]["files"][rel]
+							if os.path.splitext(fi["url"])[1][1:] not in _IGNORE_EXTENSION_LIST:
+																					#create_title_by_filename(rel)
+								relListTemp += releaseTemplate.format(release_title=v,href_link=fi["url"],release_file_name=rel)
+						archConTemp += archContainerTemplate.format(bitness=_ARCH_FRIENDLY_NAME[btnss],release_list=relListTemp)
 					
-				releaseConTemp += releaseContainerTemplate.format(author=au,arch_container_list=archConTemp)
+					releaseConTemp += releaseContainerTemplate.format(author=au,arch_container_list=archConTemp)
 			platVerTemp += platformVersionContainerTemplate.format(platform_version_header=create_platform_version(platVer),release_container_template=releaseConTemp)
 		site += platFormContainerTemplate.format(platform_name=create_platform_name(plat),platform_version_container_template=platVerTemp)
 	print("Scanned {0} releases..".format(relCount))
